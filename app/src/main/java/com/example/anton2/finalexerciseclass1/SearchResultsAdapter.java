@@ -24,27 +24,30 @@ public class SearchResultsAdapter extends BaseAdapter{
 
     @Override
     public int getCount() {
-        return results==null?0:results.size();
+        return results.size();
     }
 
     @Override
-    public Object getItem(int position) {
-        return results==null?0:results.get(position);
+    public Object getItem(int pos) {
+        return results.get(pos);
     }
 
     @Override
-    public long getItemId(int position) {
-        return position;
+    public long getItemId(int pos) {
+        return pos;
     }
 
     @Override
-    public View getView(int postion, View view, ViewGroup viewGroup) {
-        View rowView = layoutInflater.inflate(R.layout.row,viewGroup,false);
-        TextView tvResult = (TextView) rowView.findViewById(R.id.tvSearchResult);
-        String searchResult = results.get(postion);
-        tvResult.setText(tvResult +" " + postion);
+    public View getView(int pos, View convertView, ViewGroup viewGroup) {
 
+        View rowView = layoutInflater.inflate(R.layout.row, viewGroup, false);
+        TextView tvResult = rowView.findViewById(R.id.tvSearchResult);
+        String searchResult = results.get(pos);
+        tvResult.setText(searchResult + " " + pos);
+        return rowView;
+    }
 
-        return rowView ;
+    public void setSearchResults(List<String> searchResults) {
+        results = searchResults;
     }
 }
